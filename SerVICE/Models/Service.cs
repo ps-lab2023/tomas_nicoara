@@ -8,7 +8,7 @@
         public float Price { get; set; }
         public int UserId { get; set; }
         public virtual User User { get; set; } = new User();
-        public virtual Category Category { get; set; } = new Category();
+        public virtual ICollection<Category> Category { get; set; } 
         public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
     }
 }
