@@ -12,28 +12,28 @@ using SerVICE.Data;
 namespace SerVICE.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230331063024_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20230417113902_RandomMigration")]
+    partial class RandomMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.4")
+                .HasAnnotation("ProductVersion", "7.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("CategoryService", b =>
                 {
-                    b.Property<int>("CategoriesCategoryId")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<int>("ServicesServiceId")
                         .HasColumnType("int");
 
-                    b.HasKey("CategoriesCategoryId", "ServicesServiceId");
+                    b.HasKey("CategoryId", "ServicesServiceId");
 
                     b.HasIndex("ServicesServiceId");
 
@@ -54,7 +54,7 @@ namespace SerVICE.Migrations
 
                     b.HasKey("CategoryId");
 
-                    b.ToTable("Category");
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("SerVICE.Models.Order", b =>
@@ -71,16 +71,17 @@ namespace SerVICE.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("SellerID")
+                        .HasColumnType("int");
+
                     b.Property<int>("ServiceId")
                         .HasColumnType("int");
 
                     b.HasKey("OrderId");
 
-                    b.HasIndex("BuyerId");
-
                     b.HasIndex("ServiceId");
 
-                    b.ToTable("Order");
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("SerVICE.Models.Service", b =>
@@ -130,14 +131,14 @@ namespace SerVICE.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("User");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("CategoryService", b =>
                 {
                     b.HasOne("SerVICE.Models.Category", null)
                         .WithMany()
-                        .HasForeignKey("CategoriesCategoryId")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -150,32 +151,20 @@ namespace SerVICE.Migrations
 
             modelBuilder.Entity("SerVICE.Models.Order", b =>
                 {
-                    b.HasOne("SerVICE.Models.User", "Buyer")
-                        .WithMany()
-                        .HasForeignKey("BuyerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SerVICE.Models.Service", "Service")
+                    b.HasOne("SerVICE.Models.Service", null)
                         .WithMany("Orders")
                         .HasForeignKey("ServiceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Buyer");
-
-                    b.Navigation("Service");
                 });
 
             modelBuilder.Entity("SerVICE.Models.Service", b =>
                 {
-                    b.HasOne("SerVICE.Models.User", "User")
+                    b.HasOne("SerVICE.Models.User", null)
                         .WithMany("Services")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("SerVICE.Models.Service", b =>

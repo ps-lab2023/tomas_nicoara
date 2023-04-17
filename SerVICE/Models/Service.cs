@@ -7,8 +7,7 @@
         public string Description { get; set; } = string.Empty;
         public float Price { get; set; }
         public int UserId { get; set; }
-        public virtual User User { get; set; } = new User();
-        public virtual ICollection<Category> Category { get; set; } 
+        public virtual ICollection<Category>? Category { get; set; } 
         public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
     }
 }

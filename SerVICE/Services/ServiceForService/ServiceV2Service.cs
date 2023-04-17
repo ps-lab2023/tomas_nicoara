@@ -29,23 +29,22 @@
             return await _context.Services.ToListAsync();
         }
 
-        public async Task<Service> UpdateService(int id, Service request_service)
+        public async Task<List<Service>?> UpdateService(int id, Service request_service)
         {
-            var existingService = await _context.Services.FindAsync(id);
+            var service = await _context.Services.FindAsync(id);
+            if (service is null) { return null;}
 
-            if (existingService is null)
-                return null;
-
-            existingService.Title = request_service.Title;
-            existingService.Description = request_service.Description;
-            existingService.Price = request_service.Price;
-            existingService.Category.CategoryId = request_service.Category.CategoryId;
+            service.Title = request_service.Title;
+            service.Description = request_service.Description;
+            service.Price = request_service.Price;
+            service.Category= request_service.Category;
 
             await _context.SaveChangesAsync();
-            return existingService;
+
+            return await _context.Services.ToListAsync();
         }
 
-        public async Task<List<Service>> DeleteService(int id)
+        public async Task<List<Service>?> DeleteService(int id)
         {
             var service = await _context.Services.FindAsync(id);
 
@@ -58,9 +57,5 @@
             return await _context.Services.ToListAsync();
         }
 
-        Task<List<Service>?> IService.UpdateService(int id, Service request_service)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -3,7 +3,7 @@ global using Microsoft.EntityFrameworkCore;
 global using SerVICE.Data;
 
 using SerVICE.Services.ServiceForService;
-
+using SerVICE.Services.ServiceForCategory;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +14,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IService, ServiceV2Service>();
+builder.Services.AddScoped<ICategoryService, CategoryServiceV1>();
 builder.Services.AddDbContext<DataContext>();
 
 var app = builder.Build();
