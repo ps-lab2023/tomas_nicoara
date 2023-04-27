@@ -64,7 +64,7 @@
 
         public async Task<Category> GetCategoryByName(string name)
         {
-            var category_by_name = await _context.Categories.FirstOrDefaultAsync(c => c.Name == name);
+            var category_by_name = await _context.Categories.FirstOrDefaultAsync(c => c.Name.ToUpper().Contains(name.ToUpper())); ;
             if (category_by_name != null)
             {
                 return category_by_name;

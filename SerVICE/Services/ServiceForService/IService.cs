@@ -7,5 +7,6 @@
         Task<List<Service>> AddService(Service service);
         Task<List<Service>?> UpdateService(int id, Service request_service);
         Task<List<Service>?> DeleteService(int id);
+        Task<List<Service>> UpdateCategoriesForService(int id, List<Category> categories);
     }
 }

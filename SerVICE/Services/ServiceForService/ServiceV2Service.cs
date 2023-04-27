@@ -1,4 +1,6 @@
-﻿namespace SerVICE.Services.ServiceForService
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace SerVICE.Services.ServiceForService
 {
     public class ServiceV2Service : IService
     {
@@ -57,5 +59,15 @@
             return await _context.Services.ToListAsync();
         }
 
+        public async Task<List<Service>> UpdateCategoriesForService(int id, List<Category> categories)
+        {
+            var service = await _context.Services.FindAsync(id);
+            if(service != null)
+            {
+                service.Category = categories;
+            }    
+            await _context.SaveChangesAsync();
+            return await _context.Services.ToListAsync();
+        }
     }
 }

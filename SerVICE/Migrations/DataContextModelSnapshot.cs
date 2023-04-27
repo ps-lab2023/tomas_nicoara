@@ -34,7 +34,7 @@ namespace SerVICE.Migrations
 
                     b.HasIndex("ServicesServiceId");
 
-                    b.ToTable("CategoryService");
+                    b.ToTable("CategoryService", (string)null);
                 });
 
             modelBuilder.Entity("SerVICE.Models.Category", b =>
@@ -51,7 +51,7 @@ namespace SerVICE.Migrations
 
                     b.HasKey("CategoryId");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("SerVICE.Models.Order", b =>
@@ -78,7 +78,7 @@ namespace SerVICE.Migrations
 
                     b.HasIndex("ServiceId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("SerVICE.Models.Service", b =>
@@ -107,7 +107,7 @@ namespace SerVICE.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Services");
+                    b.ToTable("Services", (string)null);
                 });
 
             modelBuilder.Entity("SerVICE.Models.User", b =>
@@ -128,7 +128,7 @@ namespace SerVICE.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("CategoryService", b =>

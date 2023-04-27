@@ -10,8 +10,8 @@
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            //optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=serviceDB;Trusted_Connection=true;TrustServerCertificate=true;");
-            optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=SerVICE_DB;Trusted_Connection=true;TrustServerCertificate=true;");
+            optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=serviceDB;Trusted_Connection=true;TrustServerCertificate=true;");
+            //optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=SerVICE_DB;Trusted_Connection=true;TrustServerCertificate=true;");
         }
 
 

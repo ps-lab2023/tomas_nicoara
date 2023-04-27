@@ -4,6 +4,8 @@ global using SerVICE.Data;
 
 using SerVICE.Services.ServiceForService;
 using SerVICE.Services.ServiceForCategory;
+using Microsoft.AspNetCore.Identity;
+using SerVICE.Services.ServiceForUser;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +17,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IService, ServiceV2Service>();
 builder.Services.AddScoped<ICategoryService, CategoryServiceV1>();
+builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddDbContext<DataContext>();
 
 var app = builder.Build();

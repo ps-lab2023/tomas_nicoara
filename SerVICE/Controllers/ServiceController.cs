@@ -39,7 +39,7 @@ namespace SerVICE.Controllers
             return Ok(result);
         }
 
-        [HttpPut("{id}")]
+        
         public async Task<ActionResult<List<Service>>> UpdateService(int id, Service request_service)
         {
             var result = await  _serviceService.UpdateService(id, request_service);
@@ -58,5 +58,20 @@ namespace SerVICE.Controllers
 
             return Ok(result);
         }
+
+        //[HttpPut("{id}")]
+        //public async Task<ActionResult<List<Service>>> UpdateUpdateCategoriesForService(int id, List<Category> categories)
+        //{
+        //    try
+        //    {
+        //        var result = await _serviceService.UpdateCategoriesForService(id, categories);
+        //        return Ok(result);
+        //    }
+        //    catch(ArgumentException ex)
+        //    {
+        //        return NotFound(ex.Message);
+        //    }
+
+        //}
     }
 }
